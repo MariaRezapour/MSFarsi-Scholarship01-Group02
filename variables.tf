@@ -15,7 +15,7 @@ variable "sku_name" {
 }
 
 variable "web_app_name" {
-  default = "SCHG021113"
+  default = "SCHG0211173"
 }
 
 variable "vnet_name" {
@@ -79,11 +79,11 @@ variable "frontend_ip_configuration_name" {
 }
 
 variable "gateway_sku_name" {
-  default = "Standard_v2"
+  default = "WAF_v2"
 }
 
 variable "gateway_sku_tier" {
-  default = "Standard_v2"
+  default = "WAF_v2"
 }
 
 variable "allocation_method" { default = "Static" }
