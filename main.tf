@@ -20,6 +20,14 @@ resource "azurerm_windows_web_app" "Webapp01" {
   site_config {
     always_on = false
   }
+  provisioner "local-exec" {
+    command = <<EOT
+      # Assuming the HTML file is located at '/home/your-cloud-shell-path/login.html'
+      # You can update the path as needed.
+      az webapp deployment source config-zip   --name ${var.web_app_name} --resource-group ${var.resource_group_name}  --src /home/maria/bin/html/login.zip  
+  EOT
+}
+
 }
 
 resource "azurerm_virtual_network" "vnet01" {
@@ -50,7 +58,67 @@ resource "azurerm_public_ip" "PIP" {
   allocation_method   = var.allocation_method
   sku                 = "Standard"
 }
+#WAF Policy
+resource "azurerm_web_application_firewall_policy" "AppGWWAF01" {
+  name                = "Central-SW-SCHG02-APPGWWAF01"
+  resource_group_name = azurerm_resource_group.RG.name
+  location            = azurerm_resource_group.RG.location
 
+  # Custom rule to block Spain traffic based on IP ranges
+  custom_rules {
+    name      = "Block-Spain-Traffic"
+    priority  = 1
+    rule_type = "MatchRule"
+
+    match_conditions {
+      match_variables {
+        variable_name = "RemoteAddr"
+      }
+
+   operator           = "GeoMatch"
+      match_values       = ["ES"]
+    }
+
+    action = "Block"
+  }
+
+  # OWASP 3.2 Rule Set and Managed Rules Configuration
+  managed_rules {
+    managed_rule_set {
+      type    = "OWASP"
+      version = "3.2"
+
+      rule_group_override {
+        rule_group_name = "REQUEST-920-PROTOCOL-ENFORCEMENT"
+
+        rule {
+          id      = "920300"
+          enabled = true
+          action  = "Log"  # Example: Set specific OWASP rule to "Log"
+        }
+
+        rule {
+          id      = "920440"
+          enabled = true
+          action  = "Block"  # Example: Set specific OWASP rule to "Block"
+        }
+      }
+    }
+  }
+
+  policy_settings {
+    enabled                     = true
+    mode                        = "Prevention"  # Switch to "Detection" for testing before blocking
+    request_body_check          = true
+    file_upload_limit_in_mb     = 100
+    max_request_body_size_in_kb = 128
+  }
+}
+
+
+
+
+# APP Gateway 
 resource "azurerm_application_gateway" "appGW01" {
   name                = var.app_gateway_name
   resource_group_name = azurerm_resource_group.RG.name
@@ -79,7 +147,7 @@ resource "azurerm_application_gateway" "appGW01" {
 
   backend_address_pool {
     name = var.backend_pool_name
-    // fqdns  =  var.web_app_name
+    // fqdns  = "${var.web_app_name}.azurewebsites.net"
 
   }
 
@@ -87,8 +155,8 @@ resource "azurerm_application_gateway" "appGW01" {
     name                  = var.backend_http_settings_name
     cookie_based_affinity = "Disabled"
     path                  = "/login.html/"
-    port                  = 80
-    protocol              = "Http"
+    port                  = 443
+    protocol              = "Https"
     request_timeout       = 60
   }
 
@@ -97,7 +165,9 @@ resource "azurerm_application_gateway" "appGW01" {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = var.frontend_port_name
     protocol                       = "Http"
+    //ssl_profile_name = "ssl-profile01"
   }
+   
 
   request_routing_rule {
     name                       = var.route_name
@@ -107,6 +177,8 @@ resource "azurerm_application_gateway" "appGW01" {
     backend_address_pool_name  = var.backend_pool_name
     backend_http_settings_name = var.backend_http_settings_name
   }
+
+firewall_policy_id = azurerm_web_application_firewall_policy.AppGWWAF01.id
 }
 
 resource "azurerm_log_analytics_workspace" "workspace01" {
