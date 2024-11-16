@@ -1,6 +1,11 @@
 resource "azurerm_resource_group" "RG" {
   name     = var.resource_group_name
   location = var.location
+    tags = {
+     environment = "DevTest"
+     ServiceOwner = "Sch-Group2"
+     BillingIdentifier = "MSFarsi"
+       }
 }
 
 resource "azurerm_service_plan" "ServicePlan01" {
@@ -35,7 +40,7 @@ resource "azurerm_windows_web_app" "Webapp01" {
 tags = {
     environment = "DevTest"
     ServiceOwner = "Sch-Group2"
-   BillingIdentifier = "MSFarsi"
+    BillingIdentifier = "MSFarsi"
   }
 }
 
@@ -123,9 +128,9 @@ resource "azurerm_web_application_firewall_policy" "AppGWWAF01" {
     max_request_body_size_in_kb = 128
   }
 tags = {
-    environment = "DevTest"
-    ServiceOwner = "Sch-Group2"
-   BillingIdentifier = "MSFarsi"
+     environment = "DevTest"
+     ServiceOwner = "Sch-Group2"
+     BillingIdentifier = "MSFarsi"
   }
 }
 
