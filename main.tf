@@ -9,6 +9,11 @@ resource "azurerm_service_plan" "ServicePlan01" {
   location            = azurerm_resource_group.RG.location
   os_type             = "Windows"
   sku_name            = var.sku_name
+tags = {
+    environment = "DevTest"
+    ServiceOwner = "Sch-Group2"
+   BillingIdentifier = "MSFarsi"
+  }
 }
 
 resource "azurerm_windows_web_app" "Webapp01" {
@@ -27,7 +32,11 @@ resource "azurerm_windows_web_app" "Webapp01" {
       az webapp deployment source config-zip   --name ${var.web_app_name} --resource-group ${var.resource_group_name}  --src /home/maria/bin/html/login.zip  
   EOT
 }
-
+tags = {
+    environment = "DevTest"
+    ServiceOwner = "Sch-Group2"
+   BillingIdentifier = "MSFarsi"
+  }
 }
 
 resource "azurerm_virtual_network" "vnet01" {
@@ -112,6 +121,11 @@ resource "azurerm_web_application_firewall_policy" "AppGWWAF01" {
     request_body_check          = true
     file_upload_limit_in_mb     = 100
     max_request_body_size_in_kb = 128
+  }
+tags = {
+    environment = "DevTest"
+    ServiceOwner = "Sch-Group2"
+   BillingIdentifier = "MSFarsi"
   }
 }
 
@@ -208,6 +222,11 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic" {
   metric {
     category = "AllMetrics"
     enabled  = true
+  }
+tags = {
+    environment = "DevTest"
+    ServiceOwner = "Sch-Group2"
+   BillingIdentifier = "MSFarsi"
   }
 }
 
