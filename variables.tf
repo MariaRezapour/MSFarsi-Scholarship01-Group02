@@ -1,5 +1,5 @@
 variable "resource_group_name" {
-  default = "sch-Maria-Rezapour-rg"
+  default = "sch-group-2-rg"
 }
 
 variable "location" {
