@@ -1,9 +1,9 @@
 # MSFarsi-Scholarship01-Group02
 Scholarship #1 Group #2
 
-Scenario (# Scenario)
+Scenario https://github.com/MariaRezapour/MSFarsi-Scholarship01-Group02/blob/6ec942b2d791670f4dc952692b705dc9f301d404/README.md?plain=1#L10C1-L10C11
 
-Design architecture
+Architecture
 
 
 
@@ -35,7 +35,7 @@ Bad Request Prevention: Show how the WAF can identify and block malicious reques
 Traffic Management: Implement URL-based routing, directing requests to different services based on the URL path.
 In this scenario, students are expected to demonstrate their knowledge of Azure WAF, security policies, and traffic routing through a secure, efficient, and compliant design.
 
-Diagram
+# Diagram
 
 
 ![image](https://github.com/user-attachments/assets/eb7d0e3f-da18-4f2d-809d-230a3fff2c10)
