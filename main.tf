@@ -228,10 +228,6 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic" {
     category = "AllMetrics"
     enabled  = true
   }
-tags = {
-    environment = "DevTest"
-    ServiceOwner = "Sch-Group2"
-   BillingIdentifier = "MSFarsi"
-  }
+
 }
 
