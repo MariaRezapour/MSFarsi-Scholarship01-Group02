@@ -1,10 +1,8 @@
 # MSFarsi-Scholarship01-Group02
 Scholarship #1 Group #2
 
-Scenario https://github.com/MariaRezapour/MSFarsi-Scholarship01-Group02/blob/6ec942b2d791670f4dc952692b705dc9f301d404/README.md?plain=1#L10C1-L10C11
-
+Scenario 
 Architecture
-
 
 
 # Scenario
