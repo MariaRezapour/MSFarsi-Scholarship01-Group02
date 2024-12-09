@@ -166,8 +166,7 @@ resource "azurerm_application_gateway" "appGW01" {
 
   backend_address_pool {
     name = var.backend_pool_name
-    // fqdns  = "${var.web_app_name}.azurewebsites.net"
-
+    fqdns = ["${var.web_app_name}.azurewebsites.net"]
   }
 
   backend_http_settings {
