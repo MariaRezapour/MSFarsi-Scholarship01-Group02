@@ -46,5 +46,6 @@ In this scenario, students are expected to demonstrate their knowledge of Azure 
 
 ###  Architecture Design
 
-![image](https://github.com/user-attachments/assets/8dac2b85-316b-4a63-ac34-4ae3ecd2c91c)
+![image](https://github.com/user-attachments/assets/caad1db4-47ac-491a-a055-76d4a03d98e4)
+
 
