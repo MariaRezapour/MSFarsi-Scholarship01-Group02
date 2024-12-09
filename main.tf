@@ -178,7 +178,7 @@ resource "azurerm_application_gateway" "appGW01" {
  ssl_certificate {
           name = "CertNewApp"
          data = filebase64("CertNewApp.pfx") 
-         password = "Mihaneman@2250622506"
+         password = "password"
  }
 
   frontend_ip_configuration {
