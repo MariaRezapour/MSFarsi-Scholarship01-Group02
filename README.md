@@ -8,6 +8,8 @@
 
 ### Scenario
 
+
+
 Azure WAF (Web Application Firewall) Scenario
 Scenario Overview: A company, GlobalRetail Corp, operates a web application serving customers worldwide. Due to increasing security concerns and malicious traffic from various sources, the company has decided to implement a Web Application Firewall (WAF) solution to protect the application.
 The company’s security policy mandates that access to the application should be restricted to users from a specific country, and any traffic originating from outside this country should be blocked. Additionally, the WAF should be configured to detect and prevent bad requests, such as SQL injections or cross-site scripting (XSS) attacks, and to route traffic based on URL patterns for specific application services.
@@ -38,6 +40,9 @@ Expectations:
 • Bad Request Prevention: Show how the WAF can identify and block malicious requests, ensuring the web application is protected from common vulnerabilities.
 • Traffic Management: Implement URL-based routing, directing requests to different services based on the URL path.
 In this scenario, students are expected to demonstrate their knowledge of Azure WAF, security policies, and traffic routing through a secure, efficient, and compliant design.
+
+
+
 
 ###  Architecture Design
 
