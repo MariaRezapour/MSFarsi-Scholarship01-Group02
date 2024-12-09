@@ -214,7 +214,7 @@ url_path_map {
  default_backend_http_settings_name = var.backend_http_settings_name
  path_rule {
  name = "api-path"
- paths = ["/login.html"]
+ paths = ["/login.html "]
  backend_address_pool_name = var.backend_pool_name
  backend_http_settings_name = var.backend_http_settings_name
  }
@@ -227,8 +227,8 @@ equest_routing_rule {
     rule_type                  = "PathBasedRouting"
     http_listener_name         = var.http_listener_name
    url_path_map_name           = "api-path"
-     // backend_address_pool_name  = var.backend_pool_name
-     //backend_http_settings_name = var.backend_http_settings_name
+     backend_address_pool_name  = var.backend_pool_name
+     backend_http_settings_name = var.backend_http_settings_name
   }
 
 firewall_policy_id = azurerm_web_application_firewall_policy.AppGWWAF01.id
