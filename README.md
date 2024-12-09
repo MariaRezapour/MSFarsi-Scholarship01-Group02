@@ -34,4 +34,6 @@ Traffic Management: Implement URL-based routing, directing requests to different
 In this scenario, students are expected to demonstrate their knowledge of Azure WAF, security policies, and traffic routing through a secure, efficient, and compliant design.
 
 Diagram
+
+
 ![image](https://github.com/user-attachments/assets/eb7d0e3f-da18-4f2d-809d-230a3fff2c10)
