@@ -208,6 +208,18 @@ resource "azurerm_application_gateway" "appGW01" {
    ssl_certificate_name = "CertNewApp"
   }
    
+url_path_map {
+ name = "path-map"
+ default_backend_address_pool_name = var.backend_pool_name
+ default_backend_http_settings_name = var.backend_http_settings_name
+ path_rule {
+ name = "api-path"
+ paths = ["/login.html"]
+ backend_address_pool_name = var.backend_pool_name
+ backend_http_settings_name = var.backend_http_settings_name
+ }
+}
+
 
   request_routing_rule {
     name                       = var.route_name
