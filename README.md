@@ -26,3 +26,6 @@ Country Access Control: Successfully block traffic from outside the designated c
 Bad Request Prevention: Show how the WAF can identify and block malicious requests, ensuring the web application is protected from common vulnerabilities.
 Traffic Management: Implement URL-based routing, directing requests to different services based on the URL path.
 In this scenario, students are expected to demonstrate their knowledge of Azure WAF, security policies, and traffic routing through a secure, efficient, and compliant design.
+
+Diagram
+![image](https://github.com/user-attachments/assets/eb7d0e3f-da18-4f2d-809d-230a3fff2c10)
