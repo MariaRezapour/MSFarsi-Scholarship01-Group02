@@ -1,4 +1,4 @@
-# MSFarsi-Scholarship01-Group02     Scholarship #1 Group #2
+# MSFarsi-Scholarship01-Group02 
 
 ## Content
 - [Scenario](#scenario)
