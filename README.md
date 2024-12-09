@@ -17,7 +17,7 @@ As an Azure Administrator, you are tasked with designing and implementing a WAF 
 
 Goals:
 1. Implement a WAF Solution: Design and implement an Azure WAF to protect the web application from malicious traffic, with deployment in a single region.
-2. Country-Specific Access Control: Configure the WAF to restrict access to the application based on geographical location, allowing traffic only from a specified country.
+2. Country-Specific Access Control: Configure the WAF to restrict access to the application based on geographical location, denying  traffic only from a specified country.
 3. Bad Request Prevention: Ensure that the WAF is capable of detecting and blocking bad requests, including common web vulnerabilities like SQL injection, XSS, and more.
 4. Traffic Routing Based on URL: Implement a routing solution that directs traffic to different back-end services based on the URL path requested by the user.
    
