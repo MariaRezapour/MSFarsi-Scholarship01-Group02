@@ -29,7 +29,9 @@ resource "azurerm_windows_web_app" "Webapp01" {
 
   site_config {
     always_on = false
-  # Disable public access and restrict to specific VNet (Application Gateway)
+  
+
+ # Disable public access and restrict to specific VNet (Application Gateway)
     ip_restriction {
           action = "Allow"
           priority = 100
@@ -44,8 +46,6 @@ ip_restriction {
     ip_address = "0.0.0.0/0"  # Block all public IPs
 }
   }
- 
-  }
   provisioner "local-exec" {
     command = <<EOT
       # Assuming the HTML file is located at '/home/your-cloud-shell-path/login.html'
@@ -58,6 +58,7 @@ tags = {
     ServiceOwner = "Sch-Group2"
     BillingIdentifier = "MSFarsi"
   }
+
 }
 
 resource "azurerm_virtual_network" "vnet01" {
@@ -172,8 +173,13 @@ resource "azurerm_application_gateway" "appGW01" {
 
   frontend_port {
     name = var.frontend_port_name
-    port = 80
+    port = 443
   }
+ ssl_certificate {
+          name = "CertNewApp"
+         data = filebase64("CertNewApp.pfx") 
+         password = "Mihaneman@2250622506"
+ }
 
   frontend_ip_configuration {
     name                 = var.frontend_ip_configuration_name
@@ -182,7 +188,7 @@ resource "azurerm_application_gateway" "appGW01" {
 
   backend_address_pool {
     name = var.backend_pool_name
-    fqdns = ["${var.web_app_name}.azurewebsites.net"]
+     fqdns = ["${var.web_app_name}.azurewebsites.net"]
   }
 
   backend_http_settings {
@@ -198,8 +204,8 @@ resource "azurerm_application_gateway" "appGW01" {
     name                           = var.http_listener_name
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = var.frontend_port_name
-    protocol                       = "Http"
-    //ssl_profile_name = "ssl-profile01"
+    protocol                       = "Https"
+   ssl_certificate_name = "CertNewApp"
   }
    
 
@@ -243,6 +249,5 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic" {
     category = "AllMetrics"
     enabled  = true
   }
-
 }
 
