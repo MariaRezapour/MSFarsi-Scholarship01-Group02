@@ -20,6 +20,7 @@ Goals:
 4. Traffic Routing Based on URL: Implement a routing solution that directs traffic to different back-end services based on the URL path requested by the user.
    
 Student Notes:
+
 • Architectural Design: You must design the solution around the company’s requirements, selecting the best Azure services for implementing the WAF in a single region.
 • Country-Specific Access: Design a policy to limit access based on country origin.
 • Bad Request Detection: Ensure that the WAF is configured to detect and block common attack vectors such as SQL injection, XSS, and other threats. Demonstrate how the WAF responds to and prevents malicious requests.
@@ -30,6 +31,7 @@ Important Considerations:
 • Cost Management: Consider the cost implications of deploying a WAF in a single region, ensuring that your design is cost-effective without sacrificing security or availability.
 
 Expectations:
+
 • Design Flexibility: You have the freedom to select and configure the appropriate Azure services for this scenario. Justify your choices in terms of security, performance, and cost efficiency.
 • WAF Configuration: Demonstrate a well-configured Azure WAF that meets the company’s requirements for geographical restrictions, bad request blocking, and URL-based traffic routing.
 • Country Access Control: Successfully block traffic from outside the designated country and allow only the selected country to access the application.
