@@ -29,6 +29,22 @@ resource "azurerm_windows_web_app" "Webapp01" {
 
   site_config {
     always_on = false
+  # Disable public access and restrict to specific VNet (Application Gateway)
+    ip_restriction {
+          action = "Allow"
+          priority = 100
+          name = "AllowSpecificIP"
+         // type  = "VirtualNetwork"
+         virtual_network_subnet_id = azurerm_subnet.subnet2.id
+}
+ip_restriction {
+   action = "Deny"
+   priority = 200
+   name = "DenyAllPublic"
+    ip_address = "0.0.0.0/0"  # Block all public IPs
+}
+  }
+ 
   }
   provisioner "local-exec" {
     command = <<EOT
